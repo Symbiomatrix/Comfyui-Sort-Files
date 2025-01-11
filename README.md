@@ -9,6 +9,7 @@ There appear to be no such calls in vanilla installation or the extensions I hav
 ## Potential upgrades:
 - Control sort method with parameters rather than DEF_SORT, DEF_REV constants. I dunno whether comfy has easy access to client side settings like webui.
 I guess one way could be to create a node containing the sort methods.
+- Anti caching - if sort is changeable, need to empty cache_helper whenever the method is updated (or run a refresh) in order for it to take effect.
 - Perform the sorting client side so that it's more convenient to multiple users.
 
 ![ComfyDatesort](https://github.com/user-attachments/assets/a791d007-e6c1-45e0-9dbd-c517cb920ba5)
