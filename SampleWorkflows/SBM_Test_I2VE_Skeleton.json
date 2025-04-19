@@ -1,0 +1,2077 @@
+{
+  "last_node_id": 296,
+  "last_link_id": 435,
+  "nodes": [
+    {
+      "id": 120,
+      "type": "BboxDetectorCombined_v2",
+      "pos": [
+        517.2548217773438,
+        -1316.45849609375
+      ],
+      "size": [
+        315,
+        102
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 222
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 310
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            219
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BboxDetectorCombined_v2"
+      },
+      "widgets_values": [
+        0.5,
+        100
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1390.904541015625,
+        -511.08795166015625
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            280
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.26",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 191,
+      "type": "GetNode",
+      "pos": [
+        223.83389282226562,
+        -1581.4326171875
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            310,
+            311
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Get_ImageBase",
+      "properties": {},
+      "widgets_values": [
+        "ImageBase"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 111,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        441.22113037109375,
+        -1016.418701171875
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            213
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4xFaceUpLDAT.pth"
+      ]
+    },
+    {
+      "id": 124,
+      "type": "BatchCropFromMask",
+      "pos": [
+        865.8932495117188,
+        -1573.7724609375
+      ],
+      "size": [
+        262,
+        162
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "original_images",
+          "type": "IMAGE",
+          "link": 311
+        },
+        {
+          "name": "masks",
+          "type": "MASK",
+          "link": 219
+        }
+      ],
+      "outputs": [
+        {
+          "name": "original_images",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "cropped_images",
+          "type": "IMAGE",
+          "links": [
+            221
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "bboxes",
+          "type": "BBOX",
+          "links": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BatchCropFromMask"
+      },
+      "widgets_values": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": 231,
+      "type": "Note",
+      "pos": [
+        1163.068359375,
+        -1059.8902587890625
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Unfortunately get/set does not work correctly with bypass.\nhttps://github.com/kijai/ComfyUI-KJNodes/issues/15"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 174,
+      "type": "SetNode",
+      "pos": [
+        1123.5902099609375,
+        -889.4324951171875
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "link": 292
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "Set_ImageProc",
+      "properties": {
+        "previousName": "ImageProc"
+      },
+      "widgets_values": [
+        "ImageProc"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 255,
+      "type": "SomethingToString",
+      "pos": [
+        -1352.2791748046875,
+        -1406.857421875
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input",
+          "type": "*",
+          "link": 373
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            374
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SomethingToString"
+      },
+      "widgets_values": [
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 257,
+      "type": "SetNode",
+      "pos": [
+        -531.587646484375,
+        -415.58880615234375
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "link": 378
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "Set_Series",
+      "properties": {
+        "previousName": "Series"
+      },
+      "widgets_values": [
+        "Series"
+      ]
+    },
+    {
+      "id": 249,
+      "type": "Note",
+      "pos": [
+        -1664.6884765625,
+        -1517.04736328125
+      ],
+      "size": [
+        212.8562774658203,
+        116.56278228759766
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "The current series is stored in a persistent variable - a text file; and incremented when starting a new series.\nStrangely, something to string fails on noneobj when loading from file so have to use pygoss."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 268,
+      "type": "JoinStrings",
+      "pos": [
+        -863.6453857421875,
+        -191.54940795898438
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string1",
+          "type": "STRING",
+          "widget": {
+            "name": "string1"
+          },
+          "link": 397
+        },
+        {
+          "name": "string2",
+          "type": "STRING",
+          "widget": {
+            "name": "string2"
+          },
+          "link": 396
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            399,
+            402
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinStrings"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "_"
+      ]
+    },
+    {
+      "id": 258,
+      "type": "GetNode",
+      "pos": [
+        1625.5810546875,
+        -343.22760009765625
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "title": "Get_Series",
+      "properties": {},
+      "widgets_values": [
+        "Series"
+      ]
+    },
+    {
+      "id": 278,
+      "type": "GetNode",
+      "pos": [
+        1758.0626220703125,
+        -337.1811218261719
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "title": "Get_OutputSeries",
+      "properties": {},
+      "widgets_values": [
+        "OutputSeries"
+      ]
+    },
+    {
+      "id": 201,
+      "type": "Note",
+      "pos": [
+        1623.924560546875,
+        -133.83335876464844
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Save last frame for extension."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 279,
+      "type": "Note",
+      "pos": [
+        1634.40673828125,
+        -299.119873046875
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Separate folders for each series."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 277,
+      "type": "SetNode",
+      "pos": [
+        -497.900390625,
+        790.63134765625
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "link": 408
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "Set_OutputSeries",
+      "properties": {
+        "previousName": "OutputSeries"
+      },
+      "widgets_values": [
+        "OutputSeries"
+      ]
+    },
+    {
+      "id": 280,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -511.06463623046875,
+        978.3832397460938
+      ],
+      "size": [
+        315,
+        112
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 411
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "WanI2VE/Series_19/vid"
+      ]
+    },
+    {
+      "id": 234,
+      "type": "LoadText|pysssss",
+      "pos": [
+        -870.02880859375,
+        -452.5379638671875
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            378,
+            396,
+            404
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadText|pysssss"
+      },
+      "widgets_values": [
+        "input",
+        "current_series.txt"
+      ]
+    },
+    {
+      "id": 273,
+      "type": "StringConstant",
+      "pos": [
+        -865.1472778320312,
+        305.6653747558594
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            405
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringConstant"
+      },
+      "widgets_values": [
+        "WanI2VE/Series"
+      ]
+    },
+    {
+      "id": 274,
+      "type": "JoinStrings",
+      "pos": [
+        -860.736328125,
+        442.8297119140625
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string1",
+          "type": "STRING",
+          "widget": {
+            "name": "string1"
+          },
+          "link": 405
+        },
+        {
+          "name": "string2",
+          "type": "STRING",
+          "widget": {
+            "name": "string2"
+          },
+          "link": 404
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            406
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinStrings"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "_"
+      ]
+    },
+    {
+      "id": 271,
+      "type": "SetNode",
+      "pos": [
+        -524.9118041992188,
+        -180.7905731201172
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "link": 402
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "Set_FilenameSeries",
+      "properties": {
+        "previousName": "FilenameSeries"
+      },
+      "widgets_values": [
+        "FilenameSeries"
+      ]
+    },
+    {
+      "id": 267,
+      "type": "StringConstant",
+      "pos": [
+        -870.0721435546875,
+        -315.7978210449219
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            397
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringConstant"
+      },
+      "widgets_values": [
+        "Auto/current_frame"
+      ]
+    },
+    {
+      "id": 269,
+      "type": "StringConstant",
+      "pos": [
+        -862.2173461914062,
+        -11.603915214538574
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            398
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringConstant"
+      },
+      "widgets_values": [
+        "png"
+      ]
+    },
+    {
+      "id": 270,
+      "type": "JoinStrings",
+      "pos": [
+        -868.6439208984375,
+        111.21604919433594
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string1",
+          "type": "STRING",
+          "widget": {
+            "name": "string1"
+          },
+          "link": 399
+        },
+        {
+          "name": "string2",
+          "type": "STRING",
+          "widget": {
+            "name": "string2"
+          },
+          "link": 398
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            413
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinStrings"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "."
+      ]
+    },
+    {
+      "id": 276,
+      "type": "JoinStrings",
+      "pos": [
+        -839.8314819335938,
+        760.7098388671875
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string1",
+          "type": "STRING",
+          "widget": {
+            "name": "string1"
+          },
+          "link": 406
+        },
+        {
+          "name": "string2",
+          "type": "STRING",
+          "widget": {
+            "name": "string2"
+          },
+          "link": 407
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            408,
+            411
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinStrings"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "/"
+      ]
+    },
+    {
+      "id": 275,
+      "type": "StringConstant",
+      "pos": [
+        -848.514892578125,
+        638.0028686523438
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            407
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringConstant"
+      },
+      "widgets_values": [
+        "vid"
+      ]
+    },
+    {
+      "id": 284,
+      "type": "StringConstant",
+      "pos": [
+        -516.9110717773438,
+        -61.77024841308594
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            414
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringConstant"
+      },
+      "widgets_values": [
+        "output"
+      ]
+    },
+    {
+      "id": 285,
+      "type": "JoinStrings",
+      "pos": [
+        -505.4110107421875,
+        56.367759704589844
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string1",
+          "type": "STRING",
+          "widget": {
+            "name": "string1"
+          },
+          "link": 414
+        },
+        {
+          "name": "string2",
+          "type": "STRING",
+          "widget": {
+            "name": "string2"
+          },
+          "link": 413
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            416
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinStrings"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "/"
+      ]
+    },
+    {
+      "id": 286,
+      "type": "Note",
+      "pos": [
+        -486.5924072265625,
+        540.4201049804688
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Output only needs to be added for vhs, otherwise it's automatic."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 247,
+      "type": "PrimitiveInt",
+      "pos": [
+        -1365.84912109375,
+        -1569.861328125
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            367,
+            373
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Current Series",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        19,
+        "increment"
+      ]
+    },
+    {
+      "id": 121,
+      "type": "Note",
+      "pos": [
+        487.028076171875,
+        -1776.4425048828125
+      ],
+      "size": [
+        409.5,
+        88
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Bbox is slightly better than segm for the purpose of cropping.\nI don't think I really need sam2."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 289,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": [
+        120.9491195678711,
+        -1368.710693359375
+      ],
+      "size": [
+        252,
+        250
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "",
+        "showNav": true,
+        "sort": "position",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default"
+      }
+    },
+    {
+      "id": 290,
+      "type": "Note",
+      "pos": [
+        -944.3986206054688,
+        -1062.5765380859375
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "The image is preprocessed once; subsequent gens must have an identical frame size for the video to be combinable."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 190,
+      "type": "SetNode",
+      "pos": [
+        -951.6492309570312,
+        -1157.5906982421875
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "Set_ImageBase",
+      "properties": {
+        "previousName": "ImageBase"
+      },
+      "widgets_values": [
+        "ImageBase"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 209,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": [
+        -1734.615478515625,
+        -1282.4058837890625
+      ],
+      "size": [
+        292.5710144042969,
+        288.2749938964844
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "",
+        "showNav": true,
+        "sort": "position",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default"
+      }
+    },
+    {
+      "id": 125,
+      "type": "UltralyticsDetectorProvider",
+      "pos": [
+        496.40228271484375,
+        -1477.25146484375
+      ],
+      "size": [
+        316.20001220703125,
+        78
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BBOX_DETECTOR",
+          "type": "BBOX_DETECTOR",
+          "links": [
+            222
+          ]
+        },
+        {
+          "name": "SEGM_DETECTOR",
+          "type": "SEGM_DETECTOR",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltralyticsDetectorProvider"
+      },
+      "widgets_values": [
+        "bbox/face_yolov8m.pt"
+      ]
+    },
+    {
+      "id": 292,
+      "type": "Note",
+      "pos": [
+        -1234.74072265625,
+        -1148.7310791015625
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "BASE IMAGE LOADER HERE\nOUTPUT ImageBase"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 238,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -514.9614868164062,
+        384.1737060546875
+      ],
+      "size": [
+        315,
+        112
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 416
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "output/Auto/current_frame_19.png"
+      ]
+    },
+    {
+      "id": 294,
+      "type": "Note",
+      "pos": [
+        1987.966064453125,
+        -415.43359375
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "VIDEO COMBINE HERE\nINPUT filename = OutputSeries"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 295,
+      "type": "ImageSaverSBM",
+      "pos": [
+        -687.4302368164062,
+        -1101.8763427734375
+      ],
+      "size": [
+        315,
+        174
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 431
+        },
+        {
+          "name": "filename",
+          "type": "STRING",
+          "widget": {
+            "name": "filename"
+          },
+          "link": 433
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageSaverSBM"
+      },
+      "widgets_values": [
+        "",
+        "%time_%basemodelname_%seed",
+        "png",
+        90,
+        true
+      ]
+    },
+    {
+      "id": 291,
+      "type": "GetNode",
+      "pos": [
+        -871.2818603515625,
+        -1111.9156494140625
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 25,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "title": "Get_ImageProc",
+      "properties": {},
+      "widgets_values": [
+        "ImageProc"
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 112,
+      "type": "ImageUpscaleWithModel",
+      "pos": [
+        449.4953308105469,
+        -889.4804077148438
+      ],
+      "size": [
+        340.20001220703125,
+        46
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 213
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 221
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            292,
+            431
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "ImageUpscaleWithModel"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 256,
+      "type": "SaveText|pysssss",
+      "pos": [
+        -996.3406372070312,
+        -1421.2181396484375
+      ],
+      "size": [
+        210,
+        154
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 374
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveText|pysssss"
+      },
+      "widgets_values": [
+        "input",
+        "current_series.txt",
+        "overwrite",
+        true,
+        ""
+      ]
+    },
+    {
+      "id": 248,
+      "type": "SomethingToString",
+      "pos": [
+        -993.0955200195312,
+        -1563.9449462890625
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input",
+          "type": "*",
+          "link": 367
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            433
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SomethingToString"
+      },
+      "widgets_values": [
+        "Auto/current_frame_",
+        ""
+      ]
+    },
+    {
+      "id": 163,
+      "type": "VHS_SelectImages",
+      "pos": [
+        1382.720703125,
+        -229.65664672851562
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 280
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            434
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_SelectImages"
+      },
+      "widgets_values": {
+        "indexes": "-1",
+        "err_if_missing": true,
+        "err_if_empty": true
+      }
+    },
+    {
+      "id": 272,
+      "type": "GetNode",
+      "pos": [
+        1402.515869140625,
+        -18.456493377685547
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 26,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            435
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Get_FilenameSeries",
+      "properties": {},
+      "widgets_values": [
+        "FilenameSeries"
+      ]
+    },
+    {
+      "id": 296,
+      "type": "ImageSaverSBM",
+      "pos": [
+        1375.9302978515625,
+        57.12715530395508
+      ],
+      "size": [
+        315,
+        174
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 434
+        },
+        {
+          "name": "filename",
+          "type": "STRING",
+          "widget": {
+            "name": "filename"
+          },
+          "link": 435
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageSaverSBM"
+      },
+      "widgets_values": [
+        "",
+        "%time_%basemodelname_%seed",
+        "png",
+        90,
+        true
+      ]
+    },
+    {
+      "id": 293,
+      "type": "Note",
+      "pos": [
+        -146.31141662597656,
+        62.383827209472656
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 27,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "LOAD IMAGE HERE\nINPUT filename = join strings to the left"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    }
+  ],
+  "links": [
+    [
+      213,
+      111,
+      0,
+      112,
+      0,
+      "UPSCALE_MODEL"
+    ],
+    [
+      219,
+      120,
+      0,
+      124,
+      1,
+      "MASK"
+    ],
+    [
+      221,
+      124,
+      1,
+      112,
+      1,
+      "IMAGE"
+    ],
+    [
+      222,
+      125,
+      0,
+      120,
+      0,
+      "BBOX_DETECTOR"
+    ],
+    [
+      280,
+      8,
+      0,
+      163,
+      0,
+      "IMAGE"
+    ],
+    [
+      292,
+      112,
+      0,
+      174,
+      0,
+      "*"
+    ],
+    [
+      310,
+      191,
+      0,
+      120,
+      1,
+      "IMAGE"
+    ],
+    [
+      311,
+      191,
+      0,
+      124,
+      0,
+      "IMAGE"
+    ],
+    [
+      367,
+      247,
+      0,
+      248,
+      0,
+      "*"
+    ],
+    [
+      373,
+      247,
+      0,
+      255,
+      0,
+      "*"
+    ],
+    [
+      374,
+      255,
+      0,
+      256,
+      0,
+      "STRING"
+    ],
+    [
+      378,
+      234,
+      0,
+      257,
+      0,
+      "*"
+    ],
+    [
+      396,
+      234,
+      0,
+      268,
+      1,
+      "STRING"
+    ],
+    [
+      397,
+      267,
+      0,
+      268,
+      0,
+      "STRING"
+    ],
+    [
+      398,
+      269,
+      0,
+      270,
+      1,
+      "STRING"
+    ],
+    [
+      399,
+      268,
+      0,
+      270,
+      0,
+      "STRING"
+    ],
+    [
+      402,
+      268,
+      0,
+      271,
+      0,
+      "*"
+    ],
+    [
+      404,
+      234,
+      0,
+      274,
+      1,
+      "STRING"
+    ],
+    [
+      405,
+      273,
+      0,
+      274,
+      0,
+      "STRING"
+    ],
+    [
+      406,
+      274,
+      0,
+      276,
+      0,
+      "STRING"
+    ],
+    [
+      407,
+      275,
+      0,
+      276,
+      1,
+      "STRING"
+    ],
+    [
+      408,
+      276,
+      0,
+      277,
+      0,
+      "*"
+    ],
+    [
+      411,
+      276,
+      0,
+      280,
+      0,
+      "STRING"
+    ],
+    [
+      413,
+      270,
+      0,
+      285,
+      1,
+      "STRING"
+    ],
+    [
+      414,
+      284,
+      0,
+      285,
+      0,
+      "STRING"
+    ],
+    [
+      416,
+      285,
+      0,
+      238,
+      0,
+      "STRING"
+    ],
+    [
+      431,
+      112,
+      0,
+      295,
+      0,
+      "IMAGE"
+    ],
+    [
+      433,
+      248,
+      0,
+      295,
+      1,
+      "STRING"
+    ],
+    [
+      434,
+      163,
+      0,
+      296,
+      0,
+      "IMAGE"
+    ],
+    [
+      435,
+      272,
+      0,
+      296,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 3,
+      "title": "I2V Opt - PreUpscale",
+      "bounding": [
+        423.2769775390625,
+        -1099.3431396484375,
+        662.0599975585938,
+        311.44000244140625
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "I2V Opt - PreAutoCrop",
+      "bounding": [
+        415.39483642578125,
+        -1665.2083740234375,
+        888.1144409179688,
+        509.2200012207031
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "V2Ext - Init (Leave on for simple I2V)",
+      "bounding": [
+        -1428.3045654296875,
+        -1675.350830078125,
+        1102.5062255859375,
+        969.1743774414062
+      ],
+      "color": "#444",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 10,
+      "title": "I2V - Inference",
+      "bounding": [
+        -1970.011962890625,
+        -650.8431396484375,
+        4426.81103515625,
+        1815.9613037109375
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 9,
+      "title": "All - Shared inference",
+      "bounding": [
+        -1956.139404296875,
+        -552.8974609375,
+        1023.3319091796875,
+        1709.5001220703125
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.984973267580765,
+      "offset": [
+        -906.2909377266367,
+        495.1574887938762
+      ]
+    },
+    "ue_links": [],
+    "VHS_latentpreview": true,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": false,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
