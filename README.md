@@ -1,5 +1,8 @@
 # Comfyui modded sort + image saver nodes.
 
+## V3
+Added nodes for casting to float, and ffmpeg merging a video segment folder based on filename format (glob) which can trim a chosen number of frames at the end.
+
 ## V2
 Sort is now changeable through SortControl node - run it with any input then refresh. It currently has an anticaching mechanism for loras only.
 
